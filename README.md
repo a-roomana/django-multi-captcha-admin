@@ -36,6 +36,7 @@ command
 ```bash
 pip install [django-simple-captcha | django-recaptcha | django-recaptcha2]
 ```
+----------
 **ENGINES**
 
 We use the famous engines for render CAPTCHA. You need to install one of them, then according document add the name to the settings.
@@ -46,7 +47,7 @@ We use the famous engines for render CAPTCHA. You need to install one of them, t
 
 For more information, please go to the engine site.
 
-
+----------
 **EXAMPLE**
 
 command
@@ -63,6 +64,9 @@ MULTI_CAPTCHA_ADMIN = {
 RECAPTCHA_PUBLIC_KEY = 'public key'
 RECAPTCHA_PRIVATE_KEY = 'private key'
 ```
+
+----------
+**RESULTS**
 
 [recaptcha2](https://github.com/kbytesys/django-recaptcha2)
 
