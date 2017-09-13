@@ -1,3 +1,2 @@
-recursive-include jalali_date/static *
-recursive-include jalali_date/templates *
+recursive-include multi_captcha_admin/templates *
 include README.md

@@ -1,18 +1,18 @@
-[![PyPi Version](https://img.shields.io/pypi/v/django-jalali-date.svg)](https://pypi.python.org/pypi/django-jalali-date)
-[![GitHub stars](https://img.shields.io/github/stars/a-roomana/django-jalali-date.svg?style=social)](https://github.com/a-roomana/django-jalali-date)
-# django-jalali-date
+[![PyPi Version](https://img.shields.io/pypi/v/django-multi-captcha-admin.svg)](https://pypi.python.org/pypi/django-multi-captcha-admin)
+[![GitHub stars](https://img.shields.io/github/stars/a-roomana/django-multi-captcha-admin.svg?style=social)](https://github.com/a-roomana/django-multi-captcha-admin)
+# django-multi-captcha-admin
 
-Jalali Date support for user interface. Easy conversion of DateTimeFiled to JalaliDateTimeField within the admin site, view and templates.
+easy added captcha to login page of django admin
 
 ----------
 **DEPENDENCY**
 
-To use this module you need to install jdatetime(and of course you need django) and pytz module which you can install it with easy_install or pip
+To use this module you need to install django and one of engine captcha. which you can install it with easy_install or pip
 
 ----------
 **INSTALL**
 
-    pip install django-jalali-date   
+    pip install django-multi-captcha-admin   
 
 ----------
 **USAGE**
@@ -20,102 +20,60 @@ To use this module you need to install jdatetime(and of course you need django) 
 settings.py
 ```python
 INSTALLED_APPS = [
-	'django_apps',
+	'multi_captcha_admin',
+	'django.contrib.admin',
 	
-	'jalali_date',
-	
-	'my_apps',
+	'other_apps',
 ]
 
 # defaults
-JALALI_DATE_DEFAULTS = {
-   'Strftime': {
-        'date': '%y/%m/%d',
-        'datetime': '%H:%M:%S _ %y/%m/%d',
-    },
-    'Static': {
-        'js': [ # prefix address is 'admin/'
-            'js/django_jalali.min.js',
-            # or
-            # 'jquery.ui.datepicker.jalali/scripts/jquery-1.10.2.min.js',
-            # 'jquery.ui.datepicker.jalali/scripts/jquery.ui.core.js',
-            # 'jquery.ui.datepicker.jalali/scripts/calendar.js',
-            # 'jquery.ui.datepicker.jalali/scripts/jquery.ui.datepicker-cc.js',
-            # 'jquery.ui.datepicker.jalali/scripts/jquery.ui.datepicker-cc-fa.js',
-            # 'js/main.js',
-        ],
-        'css': {
-            'all': [
-                'admin/jquery.ui.datepicker.jalali/themes/base/jquery-ui.min.css',
-            ]
-        }
-    },
+MULTI_CAPTCHA_ADMIN = {
+    'engine': 'simple-captcha',
 }
 ```
 
-views.py
+command
+```bash
+pip install [django-simple-captcha | django-recaptcha | django-recaptcha2]
+```
+**ENGINES**
+
+We use the famous engines for render CAPTCHA. You need to install one of them, then according document add the name to the settings.
+
+ - [simple-captcha](https://github.com/mbi/django-simple-captcha)
+ - [recaptcha](https://github.com/praekelt/django-recaptcha)
+ - [recaptcha2](https://github.com/kbytesys/django-recaptcha2)
+
+For more information, please go to the engine site.
+
+
+**EXAMPLE**
+
+command
+```bash
+pip install django-mulit-captcha django-recaptcha2
+```
+settings.py
 ```python
-from jalali_date import datetime2jalali, date2jalali
+MULTI_CAPTCHA_ADMIN = {
+    'engine': 'recaptcha2',
+}
 
-def my_view(request):
-	jalali_join = datetime2jalali(request.user.date_joined).strftime('%y/%m/%d _ %H:%M:%S')
-```
-forms.py
-```python
-from django import forms
-from jalali_date.fields import JalaliDateField, SplitJalaliDateTimeField
-from jalali_date.widgets import AdminJalaliDateWidget, AdminSplitJalaliDateTime
-
-
-class TestForm(forms.ModelForm):
-    class Meta:
-        model = TestModel
-        fields = ('name', 'date', 'date_time')
-
-    def __init__(self, *args, **kwargs):
-        super(TestForm, self).__init__(*args, **kwargs)
-        self.fields['date'] = JalaliDateField(label=_('date'),
-            widget=AdminJalaliDateWidget # optional, for user default datepicker
-        )
-        # you can added a "class" to this field for user your datepicker!
-        # self.fields['date'].widget.attrs.update({'class': 'jalali_date-date'})
-
-        self.fields['date_time'] = SplitJalaliDateTimeField(label=_('date time'), 
-            widget=AdminSplitJalaliDateTime # required, for decompress DatetimeField to JalaliDateField and JalaliTimeField
-        )
-```
-template.html
-```html    
-{% load jalali_tags %}
-
-<p>{{ request.user.date_joined|to_jalali:'%y/%m/%d _ %H:%M:%S' }}</p>
-
-<form method="post">{% csrf_token %}
-    {{ form.media }} <!-- optinal, for load css and js of default datepicker -->
-    {{ form.as_p }}
-    <input type="submit">
-</form>
+# recaptcha2
+RECAPTCHA_PUBLIC_KEY = 'public key'
+RECAPTCHA_PRIVATE_KEY = 'private key'
 ```
 
-admin.py
-```python
-from django.contrib import admin
-from jalali_date.admin import ModelAdminJalaliMixin, StackedInlineJalaliMixin, TabularInlineJalaliMixin	
-    
-class MyInlines1(TabularInlineJalaliMixin, admin.TabularInline):
-	model = SecendModel
+[recaptcha2](https://github.com/kbytesys/django-recaptcha2)
 
-class MyInlines2(StackedInlineJalaliMixin, admin.StackedInline):
-	model = ThirdModel
-	
-@admin.register(FirstModel)
-class FirstModelAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
-	inlines = (MyInlines1, MyInlines2, )
-	readonly_fields = ('some_fields', 'date_field',)
-	# you can override formfield, for example:
-	formfield_overrides = {
-	    JSONField: {'widget': JSONEditor},
-	}
-```
+![captcha of recaptcha2](http://bayanbox.ir/view/2417903076718397977/reCaptcha2.png)
 
-![example](http://bayanbox.ir/view/2877111068605695571/Screenshot-from-2016-07-26-01-37-07.png)
+
+[recaptcha](https://github.com/praekelt/django-recaptcha)
+
+![captcha of recaptcha](http://bayanbox.ir/view/2014387201108001651/reCaptcha.png)
+
+
+[simple captcha](https://github.com/mbi/django-simple-captcha)
+
+![captcha of recaptcha](http://bayanbox.ir/view/721684099022571779/simple-captcha.png)
