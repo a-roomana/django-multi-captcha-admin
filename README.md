@@ -56,6 +56,13 @@ pip install django-mulit-captcha django-recaptcha2
 ```
 settings.py
 ```python
+INSTALLED_APPS = [
+	'multi_captcha_admin',
+	'django.contrib.admin',
+	
+	'other_apps',
+]
+
 MULTI_CAPTCHA_ADMIN = {
     'engine': 'recaptcha2',
 }
