@@ -42,7 +42,7 @@ We support three famous engines to render CAPTCHA. You need to install one of th
 
 For more information, please go to the engine site.
 
-After installing the desired engine, add the following to your `settings.py` with the name of the installed engine:
+Then add the following to your `settings.py` with the name of the installed engine:
 
 ```python
 MULTI_CAPTCHA_ADMIN = {
