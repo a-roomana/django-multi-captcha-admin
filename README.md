@@ -2,7 +2,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/a-roomana/django-multi-captcha-admin.svg?style=social)](https://github.com/a-roomana/django-multi-captcha-admin)
 # django-multi-captcha-admin
 
-easy added captcha to login page of django admin
+Easy added captcha to Django administration login page.
 
 ----------
 ## Dependency
