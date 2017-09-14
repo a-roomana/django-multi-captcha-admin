@@ -4,20 +4,24 @@
 
 Easy added captcha to Django administration login page.
 
-----------
+---
 ## Dependency
 
 To use this module you need to install django and one of the captcha engines, which you can install it with easy_install or pip.
 
-----------
+---
 ## Installation
 
-    pip install django-multi-captcha-admin   
+Install using `pip`:
 
-----------
-## Usage
+    pip install django-multi-captcha-admin
 
-settings.py
+Or using `easy_install`:
+
+    easy_install django-multi-captcha-admin
+
+Add `'multi_captcha_admin'` to your `INSTALLED_APPS` setting before `'django.contrib.admin'` app.
+
 ```python
 INSTALLED_APPS = [
 	...
@@ -27,12 +31,7 @@ INSTALLED_APPS = [
 ]
 ```
 
-command
-```bash
-pip install [django-simple-captcha | django-recaptcha | django-recaptcha2]
-```
-----------
-**Engines**
+### Engines
 
 We support three famous engines to render CAPTCHA. You need to install one of them, then add it to your django project according to their documents.
 
@@ -41,9 +40,6 @@ We support three famous engines to render CAPTCHA. You need to install one of th
  - [recaptcha2](https://github.com/kbytesys/django-recaptcha2)
 
 For more information, please go to the engine site.
-
-----------
-## Example
 
 After installing the desired engine, add the following to your `settings.py` with the name of the installed engine:
 
