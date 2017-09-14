@@ -5,31 +5,26 @@
 easy added captcha to login page of django admin
 
 ----------
-**DEPENDENCY**
+## Dependency
 
-To use this module you need to install django and one of engine captcha. which you can install it with easy_install or pip
+To use this module you need to install django and one of the captcha engines, which you can install it with easy_install or pip.
 
 ----------
-**INSTALL**
+## Installation
 
     pip install django-multi-captcha-admin   
 
 ----------
-**USAGE**
+## Usage
 
 settings.py
 ```python
 INSTALLED_APPS = [
+	...
 	'multi_captcha_admin',
 	'django.contrib.admin',
-	
-	'other_apps',
+	...
 ]
-
-# defaults
-MULTI_CAPTCHA_ADMIN = {
-    'engine': 'simple-captcha',
-}
 ```
 
 command
@@ -37,9 +32,9 @@ command
 pip install [django-simple-captcha | django-recaptcha | django-recaptcha2]
 ```
 ----------
-**ENGINES**
+**Engines**
 
-We use the famous engines for render CAPTCHA. You need to install one of them, then according document add the name to the settings.
+We support three famous engines to render CAPTCHA. You need to install one of them, then add it to your django project according to their documents.
 
  - [simple-captcha](https://github.com/mbi/django-simple-captcha)
  - [recaptcha](https://github.com/praekelt/django-recaptcha)
@@ -48,32 +43,18 @@ We use the famous engines for render CAPTCHA. You need to install one of them, t
 For more information, please go to the engine site.
 
 ----------
-**EXAMPLE**
+## Example
 
-command
-```bash
-pip install django-mulit-captcha django-recaptcha2
-```
-settings.py
+After installing the desired engine, add the following to your `settings.py` with the name of the installed engine:
+
 ```python
-INSTALLED_APPS = [
-	'multi_captcha_admin',
-	'django.contrib.admin',
-	
-	'other_apps',
-]
-
 MULTI_CAPTCHA_ADMIN = {
     'engine': 'recaptcha2',
 }
-
-# recaptcha2
-RECAPTCHA_PUBLIC_KEY = 'public key'
-RECAPTCHA_PRIVATE_KEY = 'private key'
 ```
 
 ----------
-**RESULTS**
+## Results
 
 [recaptcha2](https://github.com/kbytesys/django-recaptcha2)
 
