@@ -8,6 +8,16 @@
 
 {% block extrahead %}
     <script src='https://www.google.com/recaptcha/api.js'></script>
+    <style>
+        /* Center Recaptcha in Login Form */
+        .recaptcha-outer {
+            text-align: center;
+        }
+
+        .g-recaptcha {
+            display: inline-block;
+        }
+    </style>
 {% endblock %}
 
 {% block bodyclass %}{{ block.super }} login{% endblock %}
@@ -58,7 +68,9 @@
                 <input type="hidden" name="next" value="{{ next }}"/>
             </div>
             <div class="form-row">
-                {{ form.captcha }}
+                <div class="recaptcha-outer">
+                    {{ form.captcha }}
+                </div>
             </div>
             {% url 'admin_password_reset' as password_reset_url %}
             {% if password_reset_url %}
