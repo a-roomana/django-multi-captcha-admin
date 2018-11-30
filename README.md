@@ -1,6 +1,7 @@
 # django-multi-captcha-admin
 
 [![PyPi Version](https://img.shields.io/pypi/v/django-multi-captcha-admin.svg)](https://pypi.python.org/pypi/django-multi-captcha-admin)
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/django-multi-captcha-admin.svg)](https://pypistats.org/packages/django-multi-captcha-admin)
 [![GitHub stars](https://img.shields.io/github/stars/a-roomana/django-multi-captcha-admin.svg?style=social)](https://github.com/a-roomana/django-multi-captcha-admin)
 
 Easy added captcha to Django administration login page.
