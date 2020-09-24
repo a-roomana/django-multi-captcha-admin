@@ -21,6 +21,11 @@ engines = {
         'pip': 'django-recaptcha2',
         'url': 'https://github.com/kbytesys/django-recaptcha2'
     },
+    'recaptcha3': {
+        'app': 'snowpenguin.django.recaptcha3',
+        'pip': 'django-recaptcha3',
+        'url': 'https://github.com/kbytesys/django-recaptcha3'
+    },
 }
 
 if hasattr(settings, 'MULTI_CAPTCHA_ADMIN'):
