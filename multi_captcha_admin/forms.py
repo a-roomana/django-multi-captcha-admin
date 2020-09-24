@@ -18,7 +18,12 @@ def get_captcha_field():
         from snowpenguin.django.recaptcha2.widgets import ReCaptchaWidget
 
         return ReCaptchaField(widget=ReCaptchaWidget())
-
+    
+    elif engine == 'recaptcha3':
+        from snowpenguin.django.recaptcha3.fields import ReCaptchaField
+        from snowpenguin.django.recaptcha3.widgets import ReCaptchaHiddenInput
+        
+        return ReCaptchaField(widget=ReCaptchaHiddenInput())
 
 class MultiCaptchaAdminAuthenticationForm(AdminAuthenticationForm):
     def __init__(self, *args, **kwargs):
