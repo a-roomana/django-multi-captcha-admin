@@ -34,7 +34,6 @@ setup(
         "django",
     ],
     long_description=read_me('README.md'),
-    use_2to3=True,
     zip_safe=False,
     classifiers=[
         'Environment :: Web Environment',
