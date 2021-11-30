@@ -2,22 +2,14 @@
 import codecs
 from setuptools import setup, find_packages
 
-try:
-    from pypandoc import convert
 
+def read_me(filename):
+    return codecs.open(filename, encoding='utf-8').read()
 
-    def read_me(filename):
-        return convert(filename, 'rst')
-except ImportError:
-    print("warning: pypandoc module not found, could not convert Markdown to RST")
-
-
-    def read_me(filename):
-        return codecs.open(filename, encoding='utf-8').read()
 
 setup(
     name='django-multi-captcha-admin',
-    version='1.0.0',
+    version='2.0.0',
     packages=find_packages(),
     include_package_data=True,
     description=(
@@ -34,7 +26,6 @@ setup(
         "django",
     ],
     long_description=read_me('README.md'),
-    use_2to3=True,
     zip_safe=False,
     classifiers=[
         'Environment :: Web Environment',

@@ -42,25 +42,32 @@ engine_name = settings.MULTI_CAPTCHA_ADMIN['engine']
 try:
     engine = engines[engine_name]['app']
 except KeyError:
-
-    items = '\nplease select engine between: \n%s' % '\n'.join(
-        ['\t%s\t%s' % (item, engines[item]['url']) for item in engines.keys()]
+    items = '\n'.join(
+        [f"\t{item}\t{engines[item]['url']}" for item in engines.keys()]
     )
-    example = """
+    error = f'''
+please select engine between:
+{items}
+
 for example:
-    MULTI_CAPTCHA_ADMIN = {
-        'engine': 'simple-captcha'
-    }"""
-    raise Exception('%s\n%s' % (items, example))
+    MULTI_CAPTCHA_ADMIN = {{
+        "engine": "simple-captcha
+    }}"
+    '''
+    raise Exception(error)
 
 if engine not in settings.INSTALLED_APPS:
     try:
         __import__(engine)
         settings.INSTALLED_APPS.append(engine)
     except ImportError:
-        error = 'can not import {name}.\n' \
-                'you can use "pip install {pip}"\n' \
-                'website: {url}'.format(
-            name=engines[engine_name]['pip'], pip=engines[engine_name]['pip'], url=engines[engine_name]['url']
-        )
+        name = engines[engine_name]['pip']
+        pip = engines[engine_name]['pip']
+        url = engines[engine_name]['url']
+        error = f'''
+can not import {name}.
+you can use "pip install {pip}"
+website: {url}
+        '''
+
         raise Exception(error)
