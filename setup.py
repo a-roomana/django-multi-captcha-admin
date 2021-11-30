@@ -22,10 +22,12 @@ setup(
     keywords="django captcha recaptcha recaptcha2 simple-captcha admin",
     license='MIT',
     platforms=['any'],
+    python_requires='>=3',
     install_requires=[
         "django",
     ],
     long_description=read_me('README.md'),
+    long_description_content_type='text/markdown',
     zip_safe=False,
     classifiers=[
         'Environment :: Web Environment',
