@@ -14,13 +14,12 @@ To use this module you need to install django and one of the captcha engines, wh
 ---
 ## Installation
 
-Install using `pip`:
+Install:
 
     pip install django-multi-captcha-admin
 
-Or using `easy_install`:
+if you are using python 2 then install version 1.0.0 (*`pip install django-multi-captcha-admin==1.0.0`*)
 
-    easy_install django-multi-captcha-admin
 
 Add `'multi_captcha_admin'` to your `INSTALLED_APPS` setting before `'django.contrib.admin'` app.
 
