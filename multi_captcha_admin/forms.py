@@ -1,3 +1,5 @@
+from functools import cache
+
 from django.conf import settings
 from django.contrib.admin.forms import AdminAuthenticationForm
 
@@ -26,6 +28,12 @@ def get_captcha_field():
         return ReCaptchaField(widget=ReCaptchaHiddenInput())
 
 class MultiCaptchaAdminAuthenticationForm(AdminAuthenticationForm):
+
+    @cache
+    def use_google_recaptcha_api():
+        use_google_recaptcha_engines = ['recaptcha', 'recaptcha2']
+        return settings.MULTI_CAPTCHA_ADMIN['engine'] in use_google_recaptcha_engines
+
     def __init__(self, *args, **kwargs):
         super(MultiCaptchaAdminAuthenticationForm, self).__init__(*args, **kwargs)
         self.fields['captcha'] = get_captcha_field()
